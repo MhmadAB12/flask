@@ -6,14 +6,14 @@ app = Flask(__name__)
 app.config['DOWNLOAD_FOLDER'] = os.path.join(app.root_path, 'downloads')
 os.makedirs(app.config['DOWNLOAD_FOLDER'], exist_ok=True)
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        return redirect(url_for('download'))
-    return render_template('index.html')
+
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
+    def index():
+    if request.method == 'POST':
+        return redirect(url_for('download'))
+    return render_template('index.html')
     if request.method == 'POST':
         video_url = request.form['video_url']
         try:
